@@ -1,6 +1,5 @@
 import React, { Component,Suspense, lazy } from 'react';
 import {
-    BrowserRouter,
     Routes,
     Route,
     Navigate
@@ -9,17 +8,18 @@ import {
 import Spinner from './views/tools/spinner';
 
 const Home = lazy(() => import('./views/pages/home'));
-
+/*
+<Routes>
+                  <Route path="/" element={ Home } />
+              </Routes>
+ */
 class Router extends Component {
   render () {
     return (
       <Suspense fallback={<Spinner/>}>
-          <BrowserRouter>
-              <Routes>
-                  <Route index element={ Home } />
-                  <Route path="*" element={<Navigate to="/" />}/>
-              </Routes>
-          </BrowserRouter>
+          <div className='root-page'>
+
+          </div>
       </Suspense>
     );
   }

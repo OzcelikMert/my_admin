@@ -6,8 +6,7 @@ import DatePicker from "react-datepicker";
 
 type PageState = {} & any;
 
-type PageProps = {
-};
+type PageProps = {} & any;
 
 export class Home extends Component<PageProps, PageState> {
   handleChange = (date: any) => {
@@ -104,7 +103,7 @@ export class Home extends Component<PageProps, PageState> {
         }
       ],
       inputValue: '',
-    }
+    };
     console.log(this.state);
     this.statusChangedHandler = this.statusChangedHandler.bind(this);
     this.addTodo = this.addTodo.bind(this);

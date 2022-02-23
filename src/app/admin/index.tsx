@@ -4,19 +4,27 @@ import AppRouter from './router';
 import Navbar from './views/tools/navbar';
 import Sidebar from './views/tools/sidebar';
 import Footer from './views/tools/footer';
-import { withTranslation } from "react-i18next";
+
 import {
   useLocation,
   useNavigate,
   useParams
 } from "react-router-dom";
 
-type PageState = {} & any;
+type PageState = {
+} & any;
 
-type PageProps = {
-}& any;
+type PageProps = {} & any;
 
 class Admin extends Component<PageProps, PageState> {
+  state = {
+    isFullPageLayout: true
+  };
+
+  constructor(prop: any) {
+    super(prop);
+  }
+
   componentDidMount() {
     this.onRouteChanged();
   }
@@ -42,27 +50,23 @@ class Admin extends Component<PageProps, PageState> {
   }
 
   componentDidUpdate(prevProps: any) {
-    if (this.props.location !== prevProps.location) {
+    if (this.props.router.location !== prevProps.router.location) {
       this.onRouteChanged();
     }
   }
 
   onRouteChanged() {
     console.log("ROUTE CHANGED");
-    const { i18n } = this.props;
     const body = document.querySelector('body') as HTMLBodyElement;
-    if(this.props.location.pathname === '/layout/RtlLayout') {
+    if(this.props.router.location.pathname === '/layout/RtlLayout') {
       body.classList.add('rtl');
-      i18n.changeLanguage('ar');
-    }
-    else {
+    } else {
       body.classList.remove('rtl')
-      i18n.changeLanguage('en');
     }
     window.scrollTo(0, 0);
     const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/register-1', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
     for ( let i = 0; i < fullPageLayoutRoutes.length; i++ ) {
-      if (this.props.location.pathname === fullPageLayoutRoutes[i]) {
+      if (this.props.router.location.pathname === fullPageLayoutRoutes[i]) {
         this.setState({
           isFullPageLayout: true
         });
@@ -95,4 +99,4 @@ export function withRouter(Component: any) {
   return ComponentWithRouterProp;
 }
 
-export default withTranslation() (withRouter(Admin));
+export default withRouter(Admin);
