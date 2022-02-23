@@ -4,22 +4,38 @@ import { Collapse } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
 import {withRouter} from "../../index";
 
+
 type PageState = {} & any;
 
 type PageProps = {} & any;
 
 class Sidebar extends Component<PageProps, PageState> {
+  state = {
+    basicUiMenuOpen: false,
+    formElementsMenuOpen: false,
+    tablesMenuOpen: false,
+    iconsMenuOpen: false,
+    chartsMenuOpen: false,
+    userPagesMenuOpen: false,
+    errorPagesMenuOpen: false,
+    generalPagesMenuOpen: false
+  };
 
-  toggleMenuState(menuState: any) {
-    if (this.state[menuState]) {
-      this.setState({[menuState] : false});
-    } else if(Object.keys(this.state).length === 0) {
-      this.setState({[menuState] : true});
-    } else {
-      Object.keys(this.state).forEach(i => {
-        this.setState({[i]: false});
-      });
-      this.setState({[menuState] : true});
+  toggleMenuState(menuState: string) {
+    try {
+      // @ts-ignore
+      if (this.state[menuState]) {
+        this.setState({[menuState] : false});
+      } else if(Object.keys(this.state).length === 0) {
+        this.setState({[menuState] : true});
+      } else {
+        Object.keys(this.state).forEach(i => {
+          this.setState({[i]: false});
+        });
+        this.setState({[menuState] : true});
+      }
+    }catch (e) {
+      console.log(`E`)
     }
   }
 
@@ -194,7 +210,7 @@ class Sidebar extends Component<PageProps, PageState> {
   }
 
   isPathActive(path: any) {
-    return this.props.location.pathname.startsWith(path);
+    return this.props.router.location.pathname.startsWith(path);
   }
 
   componentDidMount() {
