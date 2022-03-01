@@ -1,28 +1,37 @@
 import React, { Component,Suspense, lazy } from 'react';
 import {
     Routes,
-    Route,
-    Navigate
+    Route
 } from "react-router-dom";
 
 import Spinner from './views/tools/spinner';
 
-const Home = lazy(() => import('./views/pages/home'));
+const Home = React.lazy(() => import('./views/pages/home'));
 /*
+<Suspense fallback={<Spinner/>}>
+        <Routes>
+            <Route path="/dashboard" element={ Home } />
+        </Routes>
+</Suspense>
+
 <Routes>
-                  <Route path="/" element={ Home } />
-              </Routes>
+            <Route path="/dashboard" element={
+                <React.Suspense fallback={<Spinner/>}>
+                    <Home />
+                </React.Suspense>
+            } />
+        </Routes>
  */
-class Router extends Component {
+class AppRouter extends Component {
   render () {
     return (
-      <Suspense fallback={<Spinner/>}>
-          <div className='root-page'>
-
-          </div>
-      </Suspense>
+        <Suspense fallback={<Spinner/>}>
+            <Routes>
+                <Route path="/dashboard" element={ <Home /> } />
+            </Routes>
+        </Suspense>
     );
   }
 }
 
-export default Router;
+export default AppRouter;

@@ -299,7 +299,8 @@
       padding-right: 1rem;
     }
     .react-datepicker__header {
-      @extend .bg-gradient-success;
+      @extend .bg-success;
+      @extend .bg-gradient;
       border-radius: 0;
     }
     .react-datepicker__month {
@@ -382,7 +383,7 @@
     }
   }
   &.legend-horizontal {
-    @include display-flex;
+    display: flex;
     ul {
       li {
         display: inline-block;
@@ -418,7 +419,6 @@
   width: 100%;
   z-index: 9999;
   .purchase-popup {
-    @extend .grid-margin;
     background: #000;
     color: #fff;
     padding: 15px 20px;

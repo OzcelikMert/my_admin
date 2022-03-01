@@ -7,3 +7,7 @@
 @function theme-gradient-color($key: "primary") {
   @return map-get($theme-gradient-colors, $key);
 }
+
+@function color($key: "primary") {
+  @return map-get($colors, $key);
+}

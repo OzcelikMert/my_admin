@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import '../../assets/app/admin/styles/index.scss';
+import '../../assets/app/admin/styles/index.scss';
 import AppRouter from './router';
 import Navbar from './views/tools/navbar';
 import Sidebar from './views/tools/sidebar';

@@ -2,33 +2,32 @@
 
 /* === Plugin styles === */
 
-@import "~react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-@import "~nouislider/distribute/nouislider.min.css";
 @import '~react-bootstrap-typeahead/css/Typeahead.css';
-@import '~react-bootstrap-typeahead/css/Typeahead-bs4.css';
 @import '~react-datepicker/dist/react-datepicker.css';
 
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-@import "./tools/variables";
+@import "mixins/variables";
+
 @import "~compass-mixins/lib/compass";
 @import "~compass-mixins/lib/animate";
 @import "~bootstrap/scss/bootstrap";
-@import "./tools/fonts";
-@import "./tools/functions";
+
+@import "mixins/fonts";
+@import "mixins/functions";
 
 /* === Icon fonts === */
 @import "~@mdi/font/scss/materialdesignicons";
 
 
 /* === Template mixins === */
+@import "./mixins/color-functions";
 @import "./mixins/animation";
 @import "./mixins/badges";
 @import "./mixins/buttons";
 @import "./mixins/misc";
-@import "./mixins/color-functions";
 @import "./mixins/cards";
 @import "./mixins/blockqoute";
 @import "./mixins/popovers";
@@ -41,7 +40,7 @@
 
 /* === Components === */
 
-@import "./components/widgets";
+/*@import "./components/widgets";
 @import "./components/forms";
 @import "./components/checkbox-radio";
 @import "./components/icons";
@@ -78,10 +77,10 @@
 @import "./components/chats";
 @import "./components/kanban";
 @import "./components/react-table";
-@import "./components/landing-screens/auth";
+@import "./components/landing-screens/auth";*/
 
 /* === Plugin Overrides === */
-@import "./components/plugin-overrides/contex-menu";
+/*@import "./components/plugin-overrides/contex-menu";
 @import "./components/plugin-overrides/no-ui-slider";
 @import "./components/plugin-overrides/slick-carousel";
 @import "./components/plugin-overrides/rating";
@@ -93,7 +92,7 @@
 @import "./components/plugin-overrides/react-photo-gallery";
 @import "./components/plugin-overrides/react-tag-autocomplete";
 @import "./components/plugin-overrides/jquery-jvectormap";
-@import "./components/plugin-overrides/react-table";
+@import "./components/plugin-overrides/react-table";*/
 
 /* === Layout === */
 @import "./tools/navbar";

@@ -25,6 +25,7 @@
       width: 55px;
     }
     .navbar-brand {
+
       color: lighten(color(gray-dark), 20%);
       font-size: 1.5rem;
       line-height: 48px;
@@ -115,8 +116,8 @@
         }
       }
       .rtl & {
-        @extend .ml-0;
-        @extend .mr-4;
+        @extend .ms-0;
+        @extend .me-4;
       }
     }
 
@@ -215,7 +216,7 @@
                 }
                 .rtl & {
                   i{
-                    @extend .mr-0;
+                    @extend .me-0;
                     margin-left: 10px;
                   }
                 }
