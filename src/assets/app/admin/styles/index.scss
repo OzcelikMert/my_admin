@@ -9,53 +9,59 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-@import "mixins/variables";
-
 @import "~compass-mixins/lib/compass";
 @import "~compass-mixins/lib/animate";
 @import "~bootstrap/scss/bootstrap";
 
-@import "mixins/fonts";
-@import "mixins/functions";
+
 
 /* === Icon fonts === */
 @import "~@mdi/font/scss/materialdesignicons";
 
 
 /* === Template mixins === */
-@import "./mixins/color-functions";
+@import "./mixins/variables";
+@import "./mixins/fonts";
+@import "./mixins/functions";
+
 @import "./mixins/animation";
 @import "./mixins/badges";
 @import "./mixins/buttons";
 @import "./mixins/misc";
+@import "./mixins/color-functions";
 @import "./mixins/cards";
 @import "./mixins/blockqoute";
 @import "./mixins/popovers";
 @import "./mixins/tooltips";
 @import "./mixins/no-ui-slider";
 
+@import "./mixins/background";
+@import "./mixins/responsive";
+@import "./mixins/utilities";
 
 /* === Core Styles === */
 @import "./pages/home";
 
 /* === Components === */
+@import "./components/checkbox-radio";
+@import "./components/tables";
+@import "./components/badges";
+@import "./components/buttons";
+@import "./components/cards";
+@import "./components/bootstrap-progress";
+@import "./components/todo-list";
 
 /*@import "./components/widgets";
 @import "./components/forms";
-@import "./components/checkbox-radio";
 @import "./components/icons";
-@import "./components/tables";
 @import "./components/accordions";
-@import "./components/buttons";
 @import "./components/breadcrumbs";
 @import "./components/badges";
-@import "./components/cards";
 @import "./components/preview";
 @import "./components/tooltips";
 @import "./components/user-profile";
 @import "./components/popovers";
 @import "./components/lists";
-@import "./components/bootstrap-progress";
 @import "./components/bootstrap-alerts";
 @import "./components/tabs";
 @import "./components/dropdowns";
@@ -67,7 +73,6 @@
 @import "./components/email/mail-list-container";
 @import "./components/email/mail-sidebar";
 @import "./components/email/message-content";
-@import "./components/todo-list";
 @import "./components/spinner";
 @import "./components/tickets";
 @import "./components/project-list";
@@ -80,15 +85,15 @@
 @import "./components/landing-screens/auth";*/
 
 /* === Plugin Overrides === */
+@import "./components/plugin-overrides/date-picker";
+@import "./components/plugin-overrides/full-calendar";
 /*@import "./components/plugin-overrides/contex-menu";
 @import "./components/plugin-overrides/no-ui-slider";
 @import "./components/plugin-overrides/slick-carousel";
 @import "./components/plugin-overrides/rating";
-@import "./components/plugin-overrides/date-picker";
 @import "./components/plugin-overrides/wizard";
 @import "./components/plugin-overrides/react-bootstrap-table";
 @import "./components/plugin-overrides/sweet-alert";
-@import "./components/plugin-overrides/full-calendar";
 @import "./components/plugin-overrides/react-photo-gallery";
 @import "./components/plugin-overrides/react-tag-autocomplete";
 @import "./components/plugin-overrides/jquery-jvectormap";

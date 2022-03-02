@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import {Bar, Doughnut} from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, LinearScale, Title, CategoryScale, BarElement, ArcElement, Tooltip } from 'chart.js';
 import DatePicker from "react-datepicker";
+ChartJS.register(LineElement, BarElement,ArcElement, LinearScale, Title, CategoryScale, Tooltip);
 
 type PageState = {} & any;
 
@@ -17,42 +19,8 @@ export class Home extends Component<PageProps, PageState> {
   state = {
     startDate: new Date(),
     visitSaleData: {
-      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
-      datasets: [
-        {
-          label: "CHN",
-          borderColor: 'rgba(218, 140, 255, 1)',
-          backgroundColor: 'rgba(218, 140, 255, 1)',
-          hoverBackgroundColor: 'rgba(218, 140, 255, 1)',
-          legendColor: 'rgba(218, 140, 255, 1)',
-          pointRadius: 0,
-          fill: false,
-          borderWidth: 1,
-          data: [20, 40, 15, 35, 25, 50, 30, 20]
-        },
-        {
-          label: "USA",
-          borderColor: 'rgba(54, 215, 232, 1)',
-          backgroundColor: 'rgba(54, 215, 232, 1)',
-          hoverBackgroundColor: 'rgba(54, 215, 232, 1)',
-          legendColor: 'rgba(54, 215, 232, 1)',
-          pointRadius: 0,
-          fill: false,
-          borderWidth: 1,
-          data: [40, 30, 20, 10, 50, 15, 35, 40]
-        },
-        {
-          label: "UK",
-          borderColor: 'rgba(255, 191, 150, 1)',
-          backgroundColor: 'rgba(255, 191, 150, 1)',
-          hoverBackgroundColor: 'rgba(255, 191, 150, 1)',
-          legendColor: 'rgba(255, 191, 150, 1)',
-          pointRadius: 0,
-          fill: false,
-          borderWidth: 1,
-          data: [70, 10, 30, 40, 25, 50, 15, 30]
-        }
-      ]
+      labels: [],
+      datasets: []
     },
     visitSaleOptions: {
       responsive: true,
@@ -97,35 +65,8 @@ export class Home extends Component<PageProps, PageState> {
       }
     },
     trafficData: {
-      datasets: [{
-        data: [30, 30, 40],
-        backgroundColor: [
-          'rgba(54, 215, 232, 1)',
-          'rgba(6, 185, 157, 1)',
-          'rgba(254, 124, 150, 1)'
-        ],
-        hoverBackgroundColor: [
-          'rgba(54, 215, 232, 1)',
-          'rgba(6, 185, 157, 1)',
-          'rgba(254, 124, 150, 1)'
-        ],
-        borderColor: [
-          'rgba(54, 215, 232, 1)',
-          'rgba(6, 185, 157, 1)',
-          'rgba(254, 124, 150, 1)'
-        ],
-        legendColor: [
-          'rgba(54, 215, 232, 1)',
-          'rgba(6, 185, 157, 1)',
-          'rgba(254, 124, 150, 1)'
-        ]
-      }],
-      // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: [
-        'Search Engines',
-        'Direct Click',
-        'Bookmarks Click',
-      ]
+      labels: [],
+      datasets: []
     },
     trafficOptions: {
       responsive: true,
@@ -177,7 +118,6 @@ export class Home extends Component<PageProps, PageState> {
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
-    //this.chartInit();
   }
 
   statusChangedHandler(event: any, id: any) {
@@ -226,11 +166,105 @@ export class Home extends Component<PageProps, PageState> {
   }
 
   private chartInit() {
+    let ctx = (document.getElementById('visitSaleChart') as HTMLCanvasElement).getContext("2d") as CanvasFillStrokeStyles;
+    let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 181)
+    gradientBar1.addColorStop(0, 'rgba(218, 140, 255, 1)')
+    gradientBar1.addColorStop(1, 'rgba(154, 85, 255, 1)')
 
+    var gradientBar2 = ctx.createLinearGradient(0, 0, 0, 360)
+    gradientBar2.addColorStop(0, 'rgba(54, 215, 232, 1)')
+    gradientBar2.addColorStop(1, 'rgba(177, 148, 250, 1)')
+
+    var gradientBar3 = ctx.createLinearGradient(0, 0, 0, 300)
+    gradientBar3.addColorStop(0, 'rgba(255, 191, 150, 1)')
+    gradientBar3.addColorStop(1, 'rgba(254, 112, 150, 1)')
+
+    var gradientdonut1 = ctx.createLinearGradient(0, 0, 0, 181)
+    gradientdonut1.addColorStop(0, 'rgba(54, 215, 232, 1)')
+    gradientdonut1.addColorStop(1, 'rgba(177, 148, 250, 1)')
+
+    var gradientdonut2 = ctx.createLinearGradient(0, 0, 0, 50)
+    gradientdonut2.addColorStop(0, 'rgba(6, 185, 157, 1)')
+    gradientdonut2.addColorStop(1, 'rgba(132, 217, 210, 1)')
+
+    var gradientdonut3 = ctx.createLinearGradient(0, 0, 0, 300)
+    gradientdonut3.addColorStop(0, 'rgba(254, 124, 150, 1)')
+    gradientdonut3.addColorStop(1, 'rgba(255, 205, 150, 1)')
+
+
+    const newVisitSaleData = {
+      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
+      datasets: [
+        {
+          label: "CHN",
+          borderColor: gradientBar1,
+          backgroundColor: gradientBar1,
+          hoverBackgroundColor: gradientBar1,
+          legendColor: gradientBar1,
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1,
+          data: [20, 40, 15, 35, 25, 50, 30, 20]
+        },
+        {
+          label: "USA",
+          borderColor: gradientBar2,
+          backgroundColor: gradientBar2,
+          hoverBackgroundColor: gradientBar2,
+          legendColor: gradientBar2,
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1,
+          data: [40, 30, 20, 10, 50, 15, 35, 40]
+        },
+        {
+          label: "UK",
+          borderColor: gradientBar3,
+          backgroundColor: gradientBar3,
+          hoverBackgroundColor: gradientBar3,
+          legendColor: gradientBar3,
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1,
+          data: [70, 10, 30, 40, 25, 50, 15, 30]
+        }
+      ]
+    }
+    const newTrafficData = {
+      datasets: [{
+        data: [30, 30, 40],
+        backgroundColor: [
+          gradientdonut1,
+          gradientdonut2,
+          gradientdonut3
+        ],
+        hoverBackgroundColor: [
+          gradientdonut1,
+          gradientdonut2,
+          gradientdonut3
+        ],
+        borderColor: [
+          gradientdonut1,
+          gradientdonut2,
+          gradientdonut3
+        ],
+        legendColor: [
+          gradientdonut1,
+          gradientdonut2,
+          gradientdonut3
+        ]
+      }],
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: [
+        'Search Engines',
+        'Direct Click',
+        'Bookmarks Click',
+      ]
+    };
+    this.setState({visitSaleData: newVisitSaleData, trafficData:newTrafficData} )
   }
 
   componentDidMount(){
-    //your code
     this.chartInit();
   }
 
@@ -245,7 +279,7 @@ export class Home extends Component<PageProps, PageState> {
             <div>
             <span className="d-flex align-items-center purchase-popup">
               <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
-              <a href="#" rel="noopener noreferrer" target="_blank" className="btn btn-sm purchase-button ml-auto">Check Pro Version</a>
+              <a href="#" rel="noopener noreferrer" target="_blank" className="btn btn-sm purchase-button ms-auto">Check Pro Version</a>
               <i className="mdi mdi-close bannerClose" onClick={this.toggleProBanner}></i>
             </span>
             </div>
@@ -267,8 +301,8 @@ export class Home extends Component<PageProps, PageState> {
             <div className="col-md-4 stretch-card grid-margin">
               <div className="card bg-gradient-danger card-img-holder text-white">
                 <div className="card-body">
-                  <img src={"../../assets/images/dashboard/circle.svg"} className="card-img-absolute" alt="circle" />
-                  <h4 className="font-weight-normal mb-3">Weekly Sales <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                  <img src={require("../../../../../assets/images/dashboard/circle.png")} className="card-img-absolute" alt="circle" />
+                  <h4 className="font-weight-normal mb-3">Weekly Sales <i className="mdi mdi-chart-line mdi-24px float-end"></i>
                   </h4>
                   <h2 className="mb-5">$ 15,0000</h2>
                   <h6 className="card-text">Increased by 60%</h6>
@@ -278,8 +312,8 @@ export class Home extends Component<PageProps, PageState> {
             <div className="col-md-4 stretch-card grid-margin">
               <div className="card bg-gradient-info card-img-holder text-white">
                 <div className="card-body">
-                  <img src={"../../assets/images/dashboard/circle.svg"} className="card-img-absolute" alt="circle" />
-                  <h4 className="font-weight-normal mb-3">Weekly Orders <i className="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                  <img src={require("../../../../../assets/images/dashboard/circle.png")} className="card-img-absolute" alt="circle" />
+                  <h4 className="font-weight-normal mb-3">Weekly Orders <i className="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                   </h4>
                   <h2 className="mb-5">45,6334</h2>
                   <h6 className="card-text">Decreased by 10%</h6>
@@ -289,8 +323,8 @@ export class Home extends Component<PageProps, PageState> {
             <div className="col-md-4 stretch-card grid-margin">
               <div className="card bg-gradient-success card-img-holder text-white">
                 <div className="card-body">
-                  <img src={"../../assets/images/dashboard/circle.svg"} className="card-img-absolute" alt="circle" />
-                  <h4 className="font-weight-normal mb-3">Visitors Online <i className="mdi mdi-diamond mdi-24px float-right"></i>
+                  <img src={require("../../../../../assets/images/dashboard/circle.png")} className="card-img-absolute" alt="circle" />
+                  <h4 className="font-weight-normal mb-3">Visitors Online <i className="mdi mdi-diamond mdi-24px float-end"></i>
                   </h4>
                   <h2 className="mb-5">95,5741</h2>
                   <h6 className="card-text">Increased by 5%</h6>
@@ -303,8 +337,8 @@ export class Home extends Component<PageProps, PageState> {
               <div className="card">
                 <div className="card-body">
                   <div className="clearfix mb-4">
-                    <h4 className="card-title float-left">Visit And Sales Statistics</h4>
-                    <div id="visit-sale-chart-legend" className="rounded-legend legend-horizontal legend-top-right float-right">
+                    <h4 className="card-title float-start">Visit And Sales Statistics</h4>
+                    <div id="visit-sale-chart-legend" className="rounded-legend legend-horizontal legend-top-right float-end">
                       <ul>
                         <li>
                         <span className="legend-dots bg-primary">
@@ -321,7 +355,9 @@ export class Home extends Component<PageProps, PageState> {
                       </ul>
                     </div>
                   </div>
+                  <div className="chart-container">
                     <Bar itemRef='chart' className="chartLegendContainer" data={this.state.visitSaleData} options={this.state.visitSaleOptions} id="visitSaleChart"/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -329,20 +365,22 @@ export class Home extends Component<PageProps, PageState> {
               <div className="card">
                 <div className="card-body">
                   <h4 className="card-title">Traffic Sources</h4>
+                  <div className="chart-container doughnut">
                     <Doughnut data={this.state.trafficData} options={this.state.trafficOptions}/>
-                  <div id="traffic-chart-legend" className="rounded-legend legend-vertical legend-bottom-left pt-4">
+                  </div>
+                  <div id="traffic-chart-legend" className="rounded-legend legend-vertical legend-bottom-left pt-4 mt-3">
                     <ul>
                       <li>
                         <span className="legend-dots bg-info"></span>Search Engines
-                        <span className="float-right">30%</span>
+                        <span className="float-end">30%</span>
                       </li>
                       <li>
                         <span className="legend-dots bg-success"></span>Direct Click
-                        <span className="float-right">30%</span>
+                        <span className="float-end">30%</span>
                       </li>
                       <li>
                         <span className="legend-dots bg-danger"></span>Bookmarks Click
-                        <span className="float-right">40%</span>
+                        <span className="float-end">40%</span>
                       </li>
                     </ul>
                   </div>
@@ -369,7 +407,7 @@ export class Home extends Component<PageProps, PageState> {
                       <tbody>
                       <tr>
                         <td>
-                          <img src={"../../assets/images/faces/face1.jpg"} className="mr-2" alt="face" /> David Grey </td>
+                          <img src={require("../../../../../assets/images/faces/face1.jpg")} className="mr-2" alt="face" /> David Grey </td>
                         <td> Fund is not recieved </td>
                         <td>
                           <label className="badge badge-gradient-success">DONE</label>
@@ -379,7 +417,7 @@ export class Home extends Component<PageProps, PageState> {
                       </tr>
                       <tr>
                         <td>
-                          <img src={"../../assets/images/faces/face2.jpg"} className="mr-2" alt="face" /> Stella Johnson </td>
+                          <img src={require("../../../../../assets/images/faces/face2.jpg")} className="mr-2" alt="face" /> Stella Johnson </td>
                         <td> High loading time </td>
                         <td>
                           <label className="badge badge-gradient-warning">PROGRESS</label>
@@ -389,7 +427,7 @@ export class Home extends Component<PageProps, PageState> {
                       </tr>
                       <tr>
                         <td>
-                          <img src={"../../assets/images/faces/face3.jpg"} className="mr-2" alt="face" /> Marina Michel </td>
+                          <img src={require("../../../../../assets/images/faces/face3.jpg")} className="mr-2" alt="face" /> Marina Michel </td>
                         <td> Website down for one week </td>
                         <td>
                           <label className="badge badge-gradient-info">ON HOLD</label>
@@ -399,7 +437,7 @@ export class Home extends Component<PageProps, PageState> {
                       </tr>
                       <tr>
                         <td>
-                          <img src={"../../assets/images/faces/face4.jpg"} className="mr-2" alt="face" /> John Doe </td>
+                          <img src={require("../../../../../assets/images/faces/face4.jpg")} className="mr-2" alt="face" /> John Doe </td>
                         <td> Loosing control on server </td>
                         <td>
                           <label className="badge badge-gradient-danger">REJECTED</label>
@@ -440,16 +478,16 @@ export class Home extends Component<PageProps, PageState> {
                   </div>
                   <div className="row mt-3">
                     <div className="col-6 pr-1">
-                      <img src={"../../assets/images/dashboard/img_1.jpg"} className="mb-2 mw-100 w-100 rounded" alt="face" />
-                      <img src={"../../assets/images/dashboard/img_4.jpg"} className="mw-100 w-100 rounded" alt="face" />
+                      <img src={require("../../../../../assets/images/dashboard/img_1.jpg")} className="mb-2 mw-100 w-100 rounded" alt="face" />
+                      <img src={require("../../../../../assets/images/dashboard/img_4.jpg")} className="mw-100 w-100 rounded" alt="face" />
                     </div>
                     <div className="col-6 pl-1">
-                      <img src={"../../assets/images/dashboard/img_2.jpg"} className="mb-2 mw-100 w-100 rounded" alt="face" />
-                      <img src={"../../assets/images/dashboard/img_3.jpg"} className="mw-100 w-100 rounded" alt="face "/>
+                      <img src={require("../../../../../assets/images/dashboard/img_2.jpg")} className="mb-2 mw-100 w-100 rounded" alt="face" />
+                      <img src={require("../../../../../assets/images/dashboard/img_3.jpg")} className="mw-100 w-100 rounded" alt="face "/>
                     </div>
                   </div>
                   <div className="d-flex mt-5 align-items-start">
-                    <img src={"../../assets/images/faces/face3.jpg"} className="img-sm rounded-circle mr-3" alt="face" />
+                    <img src={require("../../../../../assets/images/faces/face3.jpg")} className="img-sm rounded-circle mr-3" alt="face" />
                     <div className="mb-0 flex-grow">
                       <h5 className="mr-2 mb-2">School Website - Authentication Module.</h5>
                       <p className="mb-0 font-weight-light">It is a long established fact that a reader will be distracted by the readable content of a page.</p>
