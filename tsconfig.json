@@ -18,9 +18,34 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "sourceMap": true,
+    "jsx": "preserve",
+    "outDir": "./dist"
   },
   "include": [
-    "src"
-  ]
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "filesGlob": [
+    "typings/index.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "types": [
+    "react",
+    "node",
+    "electron"
+  ],
+  "exclude": [
+    "build",
+    "config",
+    "dist",
+    "node_modules",
+    "public",
+    "scripts"
+  ],
+  "compileOnSave": false,
+  "awesomeTypescriptLoaderOptions": {
+    "silent": true
+  }
 }

@@ -9,7 +9,7 @@ type PageState = {} & any;
 
 type PageProps = {} & any;
 
-export class Home extends Component<PageProps, PageState> {
+export class PageHome extends Component<PageProps, PageState> {
   handleChange = (date: any) => {
     this.setState({
       startDate: date
@@ -274,29 +274,18 @@ export class Home extends Component<PageProps, PageState> {
 
   render () {
     return (
-        <div>
-          <div className="proBanner">
-            <div>
+        <div className="page-dashboard">
+          {
+           /* <div className="proBanner">
+              <div>
             <span className="d-flex align-items-center purchase-popup">
               <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
               <a href="#" rel="noopener noreferrer" target="_blank" className="btn btn-sm purchase-button ms-auto">Check Pro Version</a>
               <i className="mdi mdi-close bannerClose" onClick={this.toggleProBanner}></i>
             </span>
-            </div>
-          </div>
-          <div className="page-header">
-            <h3 className="page-title">
-            <span className="page-title-icon bg-gradient-primary text-white mr-2">
-              <i className="mdi mdi-home"></i>
-            </span> Dashboard </h3>
-            <nav aria-label="breadcrumb">
-              <ul className="breadcrumb">
-                <li className="breadcrumb-item active" aria-current="page">
-                  <span></span>Overview <i className="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-              </ul>
-            </nav>
-          </div>
+              </div>
+            </div>*/
+          }
           <div className="row">
             <div className="col-md-4 stretch-card grid-margin">
               <div className="card bg-gradient-danger card-img-holder text-white">
@@ -620,4 +609,4 @@ const ListItem = (props: any) => {
       </li>
   )
 };
-export default Home;
+export default PageHome;

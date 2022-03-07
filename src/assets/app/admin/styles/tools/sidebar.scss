@@ -69,11 +69,11 @@
             }
             color: $sidebar-light-menu-arrow-color;
             &:before{
-              content: "\f141";
+              content: "\F0141";
               font-size: inherit;
               color: inherit;
               .rtl & {
-                content: "\f142";
+                content: "\F0141";
               }
             }
             + .menu-icon {
@@ -111,7 +111,7 @@
         .nav-link {
           .menu-title {
             color: $sidebar-light-menu-active-color;
-            font-weight: $font-weight-medium;         
+            font-weight: 900;
           }
           i {
             color: theme-color(primary);
@@ -199,7 +199,7 @@
           height: auto;
           border-top: 0;
           &:before {
-            content: "\F054";
+            content: "\F0142";
             font-family: "Material Design Icons";
             display: block;
             position: absolute;
@@ -215,7 +215,7 @@
             font-size: .75rem;
           }
           &.active {
-            color: $sidebar-light-menu-active-color;
+            color: theme-color(primary);
             background: transparent;
           }
           &:hover {
@@ -224,6 +224,16 @@
         }
         &:hover {
           background: transparent;
+        }
+      }
+
+      .nav{
+        &.sub-menu {
+          .nav-item {
+            .nav-link {
+              padding: $sidebar-submenu-2-item-padding;
+            }
+          }
         }
       }
     }

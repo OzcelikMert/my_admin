@@ -4,21 +4,20 @@ import AppRouter from './router';
 import Navbar from './views/tools/navbar';
 import Sidebar from './views/tools/sidebar';
 import Footer from './views/tools/footer';
-
+import $ from 'jquery';
 import {
   useLocation,
   useNavigate,
   useParams
 } from "react-router-dom";
 
-type PageState = {
-} & any;
+type PageState = {} & any;
 
 type PageProps = {} & any;
 
 class Admin extends Component<PageProps, PageState> {
   state = {
-    isFullPageLayout: true
+    breadCrumbTitle: ""
   };
 
   constructor(prop: any) {
@@ -29,58 +28,57 @@ class Admin extends Component<PageProps, PageState> {
     this.onRouteChanged();
   }
 
-  render () {
-    let navbarComponent = !this.state.isFullPageLayout ? <Navbar/> : '';
-    let sidebarComponent = !this.state.isFullPageLayout ? <Sidebar/> : '';
-    let footerComponent = !this.state.isFullPageLayout ? <Footer/> : '';
-    return (
-      <div className="container-scroller">
-        { navbarComponent }
-        <div className="container-fluid page-body-wrapper">
-          { sidebarComponent }
-          <div className="main-panel">
-            <div className="content-wrapper">
-              <AppRouter/>
-            </div>
-            { footerComponent }
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   componentDidUpdate(prevProps: any) {
-    if (this.props.router.location !== prevProps.router.location) {
+    if (this.props.router.location.pathname !== prevProps.router.location.pathname) {
       this.onRouteChanged();
     }
   }
 
   onRouteChanged() {
     console.log("ROUTE CHANGED");
-    const body = document.querySelector('body') as HTMLBodyElement;
-    if(this.props.router.location.pathname === '/layout/RtlLayout') {
-      body.classList.add('rtl');
-    } else {
-      body.classList.remove('rtl')
-    }
-    window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/register-1', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
-    for ( let i = 0; i < fullPageLayoutRoutes.length; i++ ) {
-      if (this.props.router.location.pathname === fullPageLayoutRoutes[i]) {
-        this.setState({
-          isFullPageLayout: true
-        });
-        (document.querySelector('.page-body-wrapper') as HTMLDivElement).classList.add('full-page-wrapper');
-        break;
-      } else {
-        this.setState({
-          isFullPageLayout: false
-        });
-        (document.querySelector('.page-body-wrapper') as HTMLDivElement).classList.remove('full-page-wrapper');
-      }
-    }
+    this.setBreadCrumbTitle();
   }
 
+  setBreadCrumbTitle() {
+    let pageName = ``;
+    let sidebarElements = Array.from($(`.sidebar .menu-title.active`));
+
+    sidebarElements.forEach((item: any) => {
+      item = $(item);
+      pageName += `${item.html()} > `;
+    });
+
+    pageName = pageName.slice(0, -3);
+
+    this.setState({breadCrumbTitle: pageName});
+  }
+
+  render () {
+    return (
+      <div className="container-scroller">
+        <Navbar/>
+        <div className="container-fluid page-body-wrapper">
+          <Sidebar/>
+          <div className="main-panel">
+            <div className="content-wrapper">
+              {
+                this.state.breadCrumbTitle !== ""
+                    ? <div className="page-header">
+                      <h3 className="page-title">
+                      <span className="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i className="mdi mdi-home"></i>
+                      </span> {this.state.breadCrumbTitle} </h3>
+                    </div>
+                    : ""
+              }
+              <AppRouter/>
+            </div>
+            <Footer/>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export function withRouter(Component: any) {
