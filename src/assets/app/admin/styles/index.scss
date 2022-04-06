@@ -38,10 +38,15 @@
 @import "./mixins/reset";
 @import "./mixins/responsive";
 @import "./mixins/utilities";
+@import "./mixins/tabs";
+@import "./mixins/inputs";
 
 /* === Core Styles === */
 @import "./pages/home";
 @import "./pages/gallery";
+@import "./pages/post";
+@import "./pages/user";
+@import "./pages/settings";
 
 /* === Components === */
 @import "./components/checkbox-radio";
@@ -54,13 +59,14 @@
 @import "./components/todo-list";
 @import "./components/dropdowns";
 @import "./components/spinner";
+@import "./components/input/index";
+@import "./components/landing-screens/auth";
 
 /*@import "./components/widgets";
 @import "./components/forms";
 @import "./components/icons";
 @import "./components/accordions";
 @import "./components/breadcrumbs";
-@import "./components/badges";
 @import "./components/tooltips";
 @import "./components/user-profile";
 @import "./components/popovers";
@@ -83,7 +89,7 @@
 @import "./components/chats";
 @import "./components/kanban";
 @import "./components/react-table";
-@import "./components/landing-screens/auth";*/
+*/
 
 /* === Plugin Overrides === */
 @import "./components/plugin-overrides/date-picker";

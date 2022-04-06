@@ -11,9 +11,6 @@ class Navbar extends Component<PageProps, PageState> {
   toggleOffcanvas() {
     (document.querySelector('.sidebar-offcanvas') as HTMLCanvasElement).classList.toggle('active');
   }
-  toggleRightSidebar() {
-    (document.querySelector('.right-sidebar') as HTMLDivElement).classList.toggle('open');
-  }
   render () {
     return (
       <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -169,11 +166,6 @@ class Navbar extends Component<PageProps, PageState> {
               <a className="nav-link" href="!#" onClick={event => event.preventDefault()}>
                 <i className="mdi mdi-power"></i>
               </a>
-            </li>
-            <li className="nav-item nav-settings d-none d-lg-block">
-              <button type="button" className="nav-link border-0" onClick={this.toggleRightSidebar} >
-                <i className="mdi mdi-format-line-spacing"></i>
-              </button>
             </li>
           </ul>
           <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={this.toggleOffcanvas}>

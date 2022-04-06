@@ -109,12 +109,14 @@
 
       &.active {
         .nav-link {
-          .menu-title {
-            color: $sidebar-light-menu-active-color;
-            font-weight: 900;
-          }
-          i {
-            color: theme-color(primary);
+          &.active {
+            .menu-title {
+              color: $sidebar-light-menu-active-color;
+              font-weight: 900;
+            }
+            i {
+              color: theme-color(primary);
+            }
           }
         }
       }

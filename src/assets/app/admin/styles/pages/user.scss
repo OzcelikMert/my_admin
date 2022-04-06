@@ -1,0 +1,12 @@
+.page-user {
+  .table-user {
+    overflow: hidden;
+    position: relative;
+    .table-responsive {
+      min-height: 550px;
+    }
+  }
+  .btn-save {
+    padding: 15px 40px 15px 40px;
+  }
+}

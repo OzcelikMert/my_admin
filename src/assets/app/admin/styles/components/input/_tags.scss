@@ -1,0 +1,27 @@
+.theme-input {
+  .tags {
+    display: inline-flex !important;
+    margin: 0 auto;
+    padding: 5px;
+    font-size: 14px;
+    border: #cecece solid 1px;
+    border-radius: 3px;
+    flex-wrap: wrap;
+    .tag {
+      margin: 3px;
+      display: inline-flex;
+      background-color: #cecece;
+      border-radius: 3px;
+      padding-left: 3px;
+    }
+    input {
+      border: none;
+      outline: none;
+      width: 0px;
+      min-width: 30px;
+      flex-grow: 1;
+      text-overflow: ellipsis;
+      opacity: 1;
+    }
+  }
+}

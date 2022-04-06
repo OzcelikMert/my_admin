@@ -17,7 +17,8 @@ type PageProps = {} & any;
 
 class Admin extends Component<PageProps, PageState> {
   state = {
-    breadCrumbTitle: ""
+    breadCrumbTitle: "",
+    isFullPageLayout: false
   };
 
   constructor(prop: any) {
@@ -35,7 +36,19 @@ class Admin extends Component<PageProps, PageState> {
   }
 
   onRouteChanged() {
-    console.log("ROUTE CHANGED");
+    const fullPageLayoutRoutes = ['/login'];
+    let pageBodyWrapper = (document.querySelector('.page-body-wrapper') as HTMLDivElement);
+    if(fullPageLayoutRoutes.includes(this.props.router.location.pathname)){
+      this.setState({
+        isFullPageLayout: true
+      });
+      pageBodyWrapper.classList.add('full-page-wrapper');
+    }else {
+      this.setState({
+        isFullPageLayout: false
+      });
+      pageBodyWrapper.classList.remove('full-page-wrapper');
+    }
     this.setBreadCrumbTitle();
   }
 
@@ -54,26 +67,28 @@ class Admin extends Component<PageProps, PageState> {
   }
 
   render () {
+    let navbarComponent = !this.state.isFullPageLayout ? <Navbar/> : '';
+    let sidebarComponent = !this.state.isFullPageLayout ? <Sidebar/> : '';
+    let footerComponent = !this.state.isFullPageLayout ? <Footer/> : '';
+    let breadCrumbComponent = this.state.breadCrumbTitle !== "" && !this.state.isFullPageLayout ?
+        <div className="page-header">
+          <h3 className="page-title">
+            <span className="page-title-icon bg-gradient-primary text-white mr-2">
+              <i className="mdi mdi-home"></i>
+            </span> {this.state.breadCrumbTitle}
+          </h3>
+        </div> : ``;
     return (
       <div className="container-scroller">
-        <Navbar/>
+        {navbarComponent}
         <div className="container-fluid page-body-wrapper">
-          <Sidebar/>
+          {sidebarComponent}
           <div className="main-panel">
             <div className="content-wrapper">
-              {
-                this.state.breadCrumbTitle !== ""
-                    ? <div className="page-header">
-                      <h3 className="page-title">
-                      <span className="page-title-icon bg-gradient-primary text-white mr-2">
-                        <i className="mdi mdi-home"></i>
-                      </span> {this.state.breadCrumbTitle} </h3>
-                    </div>
-                    : ""
-              }
+              {breadCrumbComponent}
               <AppRouter/>
             </div>
-            <Footer/>
+            {footerComponent}
           </div>
         </div>
       </div>

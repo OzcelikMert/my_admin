@@ -15,6 +15,12 @@ MyAdminPanel-Pages:
         Delete:
         Edit:
       Add:
+        Title
+        content
+        start date
+        category
+        tag
+
 
     Portfolio:
       List:

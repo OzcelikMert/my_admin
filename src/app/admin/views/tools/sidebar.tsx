@@ -88,18 +88,20 @@ class Sidebar extends Component<PageProps, PageState> {
             {path: `/list`, icon: `home`, title: `List`}
           ]
         },
-        {path: `/references`, icon: `home`, title: `References`, state: `References`, subPaths: [
+        {path: `/reference`, icon: `home`, title: `References`, state: `References`, subPaths: [
             {path: `/add`, icon: `home`, title: `Add`},
             {path: `/list`, icon: `home`, title: `List`}
           ]
         },
         {path: `/settings`, icon: `home`, title: `Settings`, state: `Settings`, subPaths: [
             {
-              path: `/users`, icon: `home`, title: `Users`, state: `Users`, subPaths: [
+              path: `/user`, icon: `home`, title: `Users`, state: `Users`, subPaths: [
                 {path: `/add`, icon: `home`, title: `Add`},
                 {path: `/list`, icon: `home`, title: `List`}
               ]
-            }
+            },
+            {path: `/seo`, icon: `home`, title: `SEO`},
+            {path: `/general`, icon: `home`, title: `General`},
           ]
         },
       ]
